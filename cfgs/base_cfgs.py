@@ -1,11 +1,4 @@
-# --------------------------------------------------------
-# mcan-vqa (Deep Modular Co-Attention Networks)
-# Licensed under The MIT License [see LICENSE for details]
-# Written by Yuhao Cui https://github.com/cuiyuhao1996
-# --------------------------------------------------------
-
 from cfgs.path_cfgs import PATH
-# from path_cfgs import PATH
 
 import os, torch, random
 import numpy as np
@@ -44,10 +37,7 @@ class Cfgs(PATH):
         # Print loss every step
         self.VERBOSE = True
 
-
-        # ------------------------------
         # ---- Data Provider Params ----
-        # ------------------------------
 
         # {'train', 'val', 'test'}
         self.RUN_MODE = 'train'
