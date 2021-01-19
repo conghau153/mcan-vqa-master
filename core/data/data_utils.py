@@ -110,10 +110,10 @@ def ans_stat(json_file):
 
     return ans_to_ix, ix_to_ans
 
-
 # ------------------------------------
 # ---- Real-Time Processing Utils ----
 # ------------------------------------
+
 
 def proc_img_feat(img_feat, img_feat_pad_size):
     if img_feat.shape[0] > img_feat_pad_size:

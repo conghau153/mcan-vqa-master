@@ -72,6 +72,7 @@ punct = [';', r"/", '[', ']', '"', '{', '}',
                 '(', ')', '=', '+', '\\', '_', '-',
                 '>', '<', '@', '`', ',', '?', '!']
 
+
 def process_punctuation(inText):
     outText = inText
     for p in punct:

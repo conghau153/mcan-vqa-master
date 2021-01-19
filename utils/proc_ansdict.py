@@ -5,6 +5,7 @@
 # --------------------------------------------------------
 
 import sys
+
 sys.path.append('../')
 from core.data.ans_punct import prep_ans
 import json
@@ -46,6 +47,6 @@ def ans_stat(stat_ans_list):
 
     return ans_to_ix, ix_to_ans
 
+
 ans_to_ix, ix_to_ans = ans_stat(stat_ans_list)
-# print(ans_to_ix.__len__())
 json.dump([ans_to_ix, ix_to_ans], open('../core/data/answer_dict.json', 'w'))

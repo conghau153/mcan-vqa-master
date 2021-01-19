@@ -6,6 +6,7 @@
 
 import os
 
+
 class PATH:
     def __init__(self):
 
@@ -16,7 +17,6 @@ class PATH:
         self.FEATURE_PATH = './datasets/coco_extract/'
 
         self.init_path()
-
 
     def init_path(self):
 
@@ -59,7 +59,6 @@ class PATH:
 
         if 'ckpts' not in os.listdir('./'):
             os.mkdir('./ckpts')
-
 
     def check_path(self):
         print('Checking dataset ...')

@@ -103,7 +103,6 @@ class Cfgs(PATH):
         # Set 'internal': use pytorch dataloader default shuffle method
         self.SHUFFLE_MODE = 'external'
 
-
         # ------------------------
         # ---- Network Params ----
         # ------------------------
@@ -131,7 +130,6 @@ class Cfgs(PATH):
         self.FLAT_GLIMPSES = 1
         self.FLAT_OUT_SIZE = 1024
 
-
         # --------------------------
         # ---- Optimizer Params ----
         # --------------------------
@@ -156,7 +154,6 @@ class Cfgs(PATH):
         self.OPT_BETAS = (0.9, 0.98)
         self.OPT_EPS = 1e-9
 
-
     def parse_to_dict(self, args):
         args_dict = {}
         for arg in dir(args):
@@ -166,11 +163,9 @@ class Cfgs(PATH):
 
         return args_dict
 
-
     def add_args(self, args_dict):
         for arg in args_dict:
             setattr(self, arg, args_dict[arg])
-
 
     def proc(self):
         assert self.RUN_MODE in ['train', 'val', 'test']
@@ -180,7 +175,6 @@ class Cfgs(PATH):
         self.N_GPU = len(self.GPU.split(','))
         self.DEVICES = [_ for _ in range(self.N_GPU)]
         torch.set_num_threads(2)
-
 
         # ------------ Seed setup
         # fix pytorch seed
@@ -202,7 +196,6 @@ class Cfgs(PATH):
                   'CKPT_VERSION and CKPT_EPOCH will not work')
             self.CKPT_VERSION = self.CKPT_PATH.split('/')[-1] + '_' + str(random.randint(0, 99999999))
 
-
         # ------------ Split setup
         self.SPLIT['train'] = self.TRAIN_SPLIT
         if 'val' in self.SPLIT['train'].split('+') or self.RUN_MODE not in ['train']:
@@ -211,14 +204,12 @@ class Cfgs(PATH):
         if self.RUN_MODE not in ['test']:
             self.TEST_SAVE_PRED = False
 
-
         # ------------ Gradient accumulate setup
         assert self.BATCH_SIZE % self.GRAD_ACCU_STEPS == 0
         self.SUB_BATCH_SIZE = int(self.BATCH_SIZE / self.GRAD_ACCU_STEPS)
 
         # Use a small eval batch will reduce gpu memory usage
         self.EVAL_BATCH_SIZE = int(self.SUB_BATCH_SIZE / 2)
-
 
         # ------------ Networks setup
         # FeedForwardNet size in every MCA layer
@@ -228,12 +219,10 @@ class Cfgs(PATH):
         assert self.HIDDEN_SIZE % self.MULTI_HEAD == 0
         self.HIDDEN_SIZE_HEAD = int(self.HIDDEN_SIZE / self.MULTI_HEAD)
 
-
     def __str__(self):
         for attr in dir(self):
             if not attr.startswith('__') and not isinstance(getattr(self, attr), MethodType):
                 print('{ %-17s }->' % attr, getattr(self, attr))
-
         return ''
 
 #
@@ -241,8 +230,3 @@ class Cfgs(PATH):
 # if __name__ == '__main__':
 #     __C = Cfgs()
 #     __C.proc()
-
-
-
-
-

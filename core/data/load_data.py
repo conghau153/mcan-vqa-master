@@ -16,7 +16,6 @@ class DataSet(Data.Dataset):
     def __init__(self, __C):
         self.__C = __C
 
-
         # --------------------------
         # ---- Raw data loading ----
         # --------------------------
@@ -68,7 +67,6 @@ class DataSet(Data.Dataset):
 
         print('== Dataset size:', self.data_size)
 
-
         # ------------------------
         # ---- Data statistic ----
         # ------------------------
@@ -106,7 +104,6 @@ class DataSet(Data.Dataset):
         print('== Answer vocab size (occurr more than {} times):'.format(8), self.ans_size)
         print('Finished!')
         print('')
-
 
     def __getitem__(self, idx):
 
@@ -153,13 +150,7 @@ class DataSet(Data.Dataset):
             # Process question
             ques_ix_iter = proc_ques(ques, self.token_to_ix, self.__C.MAX_TOKEN)
 
-
-        return torch.from_numpy(img_feat_iter), \
-               torch.from_numpy(ques_ix_iter), \
-               torch.from_numpy(ans_iter)
-
+        return torch.from_numpy(img_feat_iter), torch.from_numpy(ques_ix_iter), torch.from_numpy(ans_iter)
 
     def __len__(self):
         return self.data_size
-
-
