@@ -74,6 +74,7 @@ punct = [';', r"/", '[', ']', '"', '{', '}',
 
 
 def process_punctuation(inText):
+    print('--- call process_punctuation function -------')
     outText = inText
     for p in punct:
         if (p + ' ' in inText or ' ' + p in inText) \
@@ -86,6 +87,7 @@ def process_punctuation(inText):
 
 
 def process_digit_article(inText):
+    print('----- call process_digit_article function -----')
     outText = []
     tempText = inText.lower().split()
     for word in tempText:
@@ -102,6 +104,7 @@ def process_digit_article(inText):
 
 
 def prep_ans(answer):
+    print('---- call prep_ans function -----')
     answer = process_digit_article(process_punctuation(answer))
     answer = answer.replace(',', '')
     return answer

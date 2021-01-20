@@ -60,6 +60,7 @@ class AttFlat(nn.Module):
 
 class Net(nn.Module):
     def __init__(self, __C, pretrained_emb, token_size, answer_size):
+        print('---- init for Net --------')
         super(Net, self).__init__()
 
         self.embedding = nn.Embedding(
@@ -68,6 +69,7 @@ class Net(nn.Module):
         )
 
         # Loading the GloVe embedding weights
+        print('---- Loading the GloVe embedding weights ----------')
         if __C.USE_GLOVE:
             self.embedding.weight.data.copy_(torch.from_numpy(pretrained_emb))
 
@@ -92,19 +94,23 @@ class Net(nn.Module):
         self.proj = nn.Linear(__C.FLAT_OUT_SIZE, answer_size)
 
     def forward(self, img_feat, ques_ix):
+        print('---- call forward function ----------')
 
         # Make mask
         lang_feat_mask = self.make_mask(ques_ix.unsqueeze(2))
         img_feat_mask = self.make_mask(img_feat)
 
         # Pre-process Language Feature
+        print('-- Pre-process Language Feature-----')
         lang_feat = self.embedding(ques_ix)
         lang_feat, _ = self.lstm(lang_feat)
 
         # Pre-process Image Feature
+        print('-- Pre-process Image Feature -----')
         img_feat = self.img_feat_linear(img_feat)
 
         # Backbone Framework
+        print('-- Backbone Framework ---')
         lang_feat, img_feat = self.backbone(
             lang_feat,
             img_feat,
@@ -130,6 +136,7 @@ class Net(nn.Module):
 
     # Masking
     def make_mask(self, feature):
+        print('---- call make_mask function ----')
         return (torch.sum(
             torch.abs(feature),
             dim=-1

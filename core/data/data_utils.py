@@ -10,6 +10,7 @@ import en_vectors_web_lg, random, re, json
 
 
 def shuffle_list(ans_list):
+    print('--- call shuffle_list function ----')
     random.shuffle(ans_list)
 
 
@@ -18,6 +19,7 @@ def shuffle_list(ans_list):
 # ------------------------------
 
 def img_feat_path_load(path_list):
+    print('---- call img_feat_path_load function ------')
     iid_to_path = {}
 
     for ix, path in enumerate(path_list):
@@ -28,6 +30,7 @@ def img_feat_path_load(path_list):
 
 
 def img_feat_load(path_list):
+    print('---- call img_feat_load function -------')
     iid_to_feat = {}
 
     for ix, path in enumerate(path_list):
@@ -41,6 +44,7 @@ def img_feat_load(path_list):
 
 
 def ques_load(ques_list):
+    print('---- call ques_load function --------')
     qid_to_ques = {}
 
     for ques in ques_list:
@@ -51,6 +55,7 @@ def ques_load(ques_list):
 
 
 def tokenize(stat_ques_list, use_glove):
+    print('---- call tokenize function ---------')
     token_to_ix = {
         'PAD': 0,
         'UNK': 1,
@@ -106,6 +111,7 @@ def tokenize(stat_ques_list, use_glove):
 
 
 def ans_stat(json_file):
+    print('---- call ans_stat function --------')
     ans_to_ix, ix_to_ans = json.load(open(json_file, 'r'))
 
     return ans_to_ix, ix_to_ans
@@ -116,6 +122,7 @@ def ans_stat(json_file):
 
 
 def proc_img_feat(img_feat, img_feat_pad_size):
+    print('---- call proc_img_feat function -------')
     if img_feat.shape[0] > img_feat_pad_size:
         img_feat = img_feat[:img_feat_pad_size]
 
@@ -130,6 +137,7 @@ def proc_img_feat(img_feat, img_feat_pad_size):
 
 
 def proc_ques(ques, token_to_ix, max_token):
+    print('---- call proc_ques function ------')
     ques_ix = np.zeros(max_token, np.int64)
 
     words = re.sub(
@@ -151,6 +159,7 @@ def proc_ques(ques, token_to_ix, max_token):
 
 
 def get_score(occur):
+    print('---- call get_score function -----')
     if occur == 0:
         return .0
     elif occur == 1:
@@ -164,6 +173,7 @@ def get_score(occur):
 
 
 def proc_ans(ans, ans_to_ix):
+    print('---- call proc_ans function ------')
     ans_score = np.zeros(ans_to_ix.__len__(), np.float32)
     ans_prob_dict = {}
 

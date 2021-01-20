@@ -17,6 +17,7 @@ import torch, math
 
 class MHAtt(nn.Module):
     def __init__(self, __C):
+        print('---- init MHAtt -----')
         super(MHAtt, self).__init__()
         self.__C = __C
 
@@ -28,6 +29,7 @@ class MHAtt(nn.Module):
         self.dropout = nn.Dropout(__C.DROPOUT_R)
 
     def forward(self, v, k, q, mask):
+        print('---- call forward function -------')
         n_batches = q.size(0)
 
         v = self.linear_v(v).view(
@@ -63,6 +65,7 @@ class MHAtt(nn.Module):
         return atted
 
     def att(self, value, key, query, mask):
+        print('---- call att function ----')
         d_k = query.size(-1)
 
         scores = torch.matmul(
@@ -84,6 +87,7 @@ class MHAtt(nn.Module):
 
 class FFN(nn.Module):
     def __init__(self, __C):
+        print('---- init FFN ------')
         super(FFN, self).__init__()
 
         self.mlp = MLP(
@@ -104,6 +108,7 @@ class FFN(nn.Module):
 
 class SA(nn.Module):
     def __init__(self, __C):
+        print('---- init Self Attention ------')
         super(SA, self).__init__()
 
         self.mhatt = MHAtt(__C)
@@ -133,6 +138,7 @@ class SA(nn.Module):
 
 class SGA(nn.Module):
     def __init__(self, __C):
+        print('---- init Self Guided Attention ------')
         super(SGA, self).__init__()
 
         self.mhatt1 = MHAtt(__C)
@@ -170,6 +176,7 @@ class SGA(nn.Module):
 
 class MCA_ED(nn.Module):
     def __init__(self, __C):
+        print('---- init MAC Layers Cascaded by Encoder-Decoder -----------')
         super(MCA_ED, self).__init__()
 
         self.enc_list = nn.ModuleList([SA(__C) for _ in range(__C.LAYER)])
