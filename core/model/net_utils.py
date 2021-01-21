@@ -10,7 +10,6 @@ import torch
 
 class FC(nn.Module):
     def __init__(self, in_size, out_size, dropout_r=0., use_relu=True):
-        print('---- init FC ----')
         super(FC, self).__init__()
         self.dropout_r = dropout_r
         self.use_relu = use_relu
@@ -37,7 +36,6 @@ class FC(nn.Module):
 
 class MLP(nn.Module):
     def __init__(self, in_size, mid_size, out_size, dropout_r=0., use_relu=True):
-        print('---- init MLP ------------')
         super(MLP, self).__init__()
 
         self.fc = FC(in_size, mid_size, dropout_r=dropout_r, use_relu=use_relu)
@@ -49,7 +47,6 @@ class MLP(nn.Module):
 
 class LayerNorm(nn.Module):
     def __init__(self, size, eps=1e-6):
-        print('---- init LayerNorm ---------')
         super(LayerNorm, self).__init__()
         self.eps = eps
 

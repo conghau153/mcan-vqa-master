@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c425743b-be67-498a-8e75-fe251bf24d8c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cfgs/large_model.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/misc/mcan_overall.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/mcan-vqa-master.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mcan-vqa-master.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cfgs/base_cfgs.py" beforeDir="false" afterPath="$PROJECT_DIR$/cfgs/base_cfgs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cfgs/path_cfgs.py" beforeDir="false" afterPath="$PROJECT_DIR$/cfgs/path_cfgs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cfgs/small_model.yml" beforeDir="false" afterPath="$PROJECT_DIR$/cfgs/small_model.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/data/ans_punct.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/data/ans_punct.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/data/data_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/data/data_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/data/load_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/data/load_data.py" afterDir="false" />
@@ -21,11 +11,6 @@
       <change beforePath="$PROJECT_DIR$/core/model/net.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/model/net.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/model/net_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/model/net_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/model/optim.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/model/optim.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/run.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/proc_ansdict.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/proc_ansdict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/vqa.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/vqa.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/vqaEval.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/vqaEval.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

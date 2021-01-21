@@ -35,7 +35,6 @@ class Execution:
     def train(self, dataset, dataset_eval=None):
 
         # Obtain needed information
-        print('---- Obtain needed information ----')
         data_size = dataset.data_size
         token_size = dataset.token_size
         ans_size = dataset.ans_size
@@ -53,7 +52,6 @@ class Execution:
         net.train()
 
         # Define the multi-gpu training if needed
-        print('---- Define the multi-gpu training if needed ----')
         if self.__C.N_GPU > 1:
             net = nn.DataParallel(net, device_ids=self.__C.DEVICES)
 
@@ -62,7 +60,6 @@ class Execution:
         loss_fn = torch.nn.BCELoss(reduction='sum').cuda()
 
         # Load checkpoint if resume training
-        print('---- Load checkpoint if resume training --------')
         if self.__C.RESUME:
             print(' ========== Resume training')
 
@@ -77,14 +74,12 @@ class Execution:
                        '/epoch' + str(self.__C.CKPT_EPOCH) + '.pkl'
 
             # Load the network parameters
-            print('---- Load the network parameters ----')
             print('Loading ckpt {}'.format(path))
             ckpt = torch.load(path)
             print('Finish!')
             net.load_state_dict(ckpt['state_dict'])
 
             # Load the optimizer parameters
-            print('---- Load the optimizer parameters ------')
             optim = get_optim(self.__C, net, data_size, ckpt['lr_base'])
             optim._step = int(data_size / self.__C.BATCH_SIZE * self.__C.CKPT_EPOCH)
             optim.optimizer.load_state_dict(ckpt['optimizer'])
@@ -105,7 +100,6 @@ class Execution:
         grad_norm = np.zeros(len(named_params))
 
         # Define multi-thread dataloader
-        print('---- Define multi-thread dataloader -----')
         if self.__C.SHUFFLE_MODE in ['external']:
             dataloader = Data.DataLoader(
                 dataset,
@@ -126,7 +120,6 @@ class Execution:
             )
 
         # Training script
-        print('---- Training script -----')
         for epoch in range(start_epoch, self.__C.MAX_EPOCH):
 
             # Save log information
@@ -289,10 +282,8 @@ class Execution:
 
     # Evaluation
     def eval(self, dataset, state_dict=None, valid=False):
-        print('---------Evaluation--------------')
 
         # Load parameters
-        print('---- Load parameters ----')
         if self.__C.CKPT_PATH is not None:
             print('Warning: you are now using CKPT_PATH args, '
                   'CKPT_VERSION and CKPT_EPOCH will not work')
@@ -311,7 +302,6 @@ class Execution:
             print('Finish!')
 
         # Store the prediction list
-        print('---- Store the prediction list ----')
         qid_list = [ques['question_id'] for ques in dataset.ques_list]
         ans_ix_list = []
         pred_list = []
@@ -322,7 +312,6 @@ class Execution:
         ans_size = dataset.ans_size
         pretrained_emb = dataset.pretrained_emb
 
-        print('---- Define the MCAN model ------')
         net = Net(
             self.__C,
             pretrained_emb,
@@ -332,12 +321,11 @@ class Execution:
         net.cuda()
         net.eval()
 
-        print('---- Define the multi-gpu  if needed ------')
         if self.__C.N_GPU > 1:
             net = nn.DataParallel(net, device_ids=self.__C.DEVICES)
 
         net.load_state_dict(state_dict)
-        print('---- DataLoader------')
+
         dataloader = Data.DataLoader(
             dataset,
             batch_size=self.__C.EVAL_BATCH_SIZE,
@@ -367,7 +355,6 @@ class Execution:
             pred_argmax = np.argmax(pred_np, axis=1)
 
             # Save the answer index
-            print('---- Save the answer index ------')
             if pred_argmax.shape[0] != self.__C.EVAL_BATCH_SIZE:
                 pred_argmax = np.pad(
                     pred_argmax,
@@ -379,7 +366,6 @@ class Execution:
             ans_ix_list.append(pred_argmax)
 
             # Save the whole prediction vector
-            print('---- Save the whole prediction vector ----')
             if self.__C.TEST_SAVE_PRED:
                 if pred_np.shape[0] != self.__C.EVAL_BATCH_SIZE:
                     pred_np = np.pad(

@@ -75,7 +75,6 @@ class DataSet(Data.Dataset):
         # ------------------------
 
         # {image id} -> {image feature absolutely path}
-        print('---image id------')
         if self.__C.PRELOAD:
             print('==== Pre-Loading features ...')
             time_start = time.time()
@@ -86,11 +85,9 @@ class DataSet(Data.Dataset):
             self.iid_to_img_feat_path = img_feat_path_load(self.img_feat_path_list)
 
         # {question id} -> {question}
-        print('----question id------')
         self.qid_to_ques = ques_load(self.ques_list)
 
         # Tokenize
-        print('----Tokenize---------')
         self.token_to_ix, self.pretrained_emb = tokenize(self.stat_ques_list, __C.USE_GLOVE)
         self.token_size = self.token_to_ix.__len__()
         print('== Question token vocab size:', self.token_size)
@@ -119,7 +116,6 @@ class DataSet(Data.Dataset):
         ans_iter = np.zeros(1)
 
         # Process ['train'] and ['val', 'test'] respectively
-        print('------ Process [train] and [val, test] respectively -----------------')
         if self.__C.RUN_MODE in ['train']:
             # Load the run data from list
             ans = self.ans_list[idx]
@@ -134,23 +130,19 @@ class DataSet(Data.Dataset):
             img_feat_iter = proc_img_feat(img_feat_x, self.__C.IMG_FEAT_PAD_SIZE)
 
             # Process question
-            print('---- Process question -----')
             ques_ix_iter = proc_ques(ques, self.token_to_ix, self.__C.MAX_TOKEN)
 
             # Process answer
-            print('---- Process answer -----')
             ans_iter = proc_ans(ans, self.ans_to_ix)
 
         else:
             # Load the run data from list
-            print('---- Load the run data from list ----')
             ques = self.ques_list[idx]
 
             # # Process image feature from (.npz) file
             # img_feat = np.load(self.iid_to_img_feat_path[str(ques['image_id'])])
             # img_feat_x = img_feat['x'].transpose((1, 0))
             # Process image feature from (.npz) file
-            print('---- Process image feature from (.npz) file ----')
             if self.__C.PRELOAD:
                 img_feat_x = self.iid_to_img_feat[str(ques['image_id'])]
             else:
@@ -159,7 +151,6 @@ class DataSet(Data.Dataset):
             img_feat_iter = proc_img_feat(img_feat_x, self.__C.IMG_FEAT_PAD_SIZE)
 
             # Process question
-            print('---- Process question ----')
             ques_ix_iter = proc_ques(ques, self.token_to_ix, self.__C.MAX_TOKEN)
 
         return torch.from_numpy(img_feat_iter), torch.from_numpy(ques_ix_iter), torch.from_numpy(ans_iter)
