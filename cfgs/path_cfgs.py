@@ -11,7 +11,7 @@ class PATH:
     def __init__(self):
 
         # vqav2 dataset root path
-        self.DATASET_PATH = './datasets/vqa/'
+        self.DATASET_PATH = './datasets/vqa-vi/'
 
         # bottom up features root path
         self.FEATURE_PATH = './datasets/coco_extract/'
@@ -27,16 +27,21 @@ class PATH:
         }
 
         self.QUESTION_PATH = {
+            # 'train': self.DATASET_PATH + 'v2_OpenEnded_mscoco_train2014_questions.json',
+            # 'val': self.DATASET_PATH + 'v2_OpenEnded_mscoco_val2014_questions.json',
+            # 'test': self.DATASET_PATH + 'v2_OpenEnded_mscoco_test2015_questions.json',
+            'vg': self.DATASET_PATH + 'VG_questions.json',
             'train': self.DATASET_PATH + 'v2_OpenEnded_mscoco_train2014_questions.json',
             'val': self.DATASET_PATH + 'v2_OpenEnded_mscoco_val2014_questions.json',
-            'test': self.DATASET_PATH + 'v2_OpenEnded_mscoco_test2015_questions.json',
-            'vg': self.DATASET_PATH + 'VG_questions.json',
+            'test': self.DATASET_PATH + 'VG_questions.json',
         }
 
         self.ANSWER_PATH = {
+            # 'train': self.DATASET_PATH + 'v2_mscoco_train2014_annotations.json',
+            # 'val': self.DATASET_PATH + 'v2_mscoco_val2014_annotations.json',
+            'vg': self.DATASET_PATH + 'VG_annotations.json',
             'train': self.DATASET_PATH + 'v2_mscoco_train2014_annotations.json',
             'val': self.DATASET_PATH + 'v2_mscoco_val2014_annotations.json',
-            'vg': self.DATASET_PATH + 'VG_annotations.json',
         }
 
         self.RESULT_PATH = './results/result_test/'

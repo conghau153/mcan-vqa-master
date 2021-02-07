@@ -22,11 +22,15 @@ class DataSet(Data.Dataset):
 
         # Loading all image paths
         # if self.__C.PRELOAD:
+        print('Loading all image paths')
         self.img_feat_path_list = []
         split_list = __C.SPLIT[__C.RUN_MODE].split('+')
         for split in split_list:
             if split in ['train', 'val', 'test']:
                 self.img_feat_path_list += glob.glob(__C.IMG_FEAT_PATH[split] + '*.npz')
+
+        # print(len(self.img_feat_path_list))
+        # print(self.img_feat_path_list)
 
         # if __C.EVAL_EVERY_EPOCH and __C.RUN_MODE in ['train']:
         #     self.img_feat_path_list += glob.glob(__C.IMG_FEAT_PATH['val'] + '*.npz')
@@ -38,11 +42,11 @@ class DataSet(Data.Dataset):
         #         glob.glob(__C.IMG_FEAT_PATH['test'] + '*.npz')
 
         # Loading question word list
-        self.stat_ques_list = \
-            json.load(open(__C.QUESTION_PATH['train'], 'r'))['questions'] + \
-            json.load(open(__C.QUESTION_PATH['val'], 'r'))['questions'] + \
-            json.load(open(__C.QUESTION_PATH['test'], 'r'))['questions'] + \
-            json.load(open(__C.QUESTION_PATH['vg'], 'r'))['questions']
+        self.stat_ques_list = json.load(open(__C.QUESTION_PATH['vg'], 'r'))['questions']
+            # json.load(open(__C.QUESTION_PATH['train'], 'r'))['questions'] + \
+            # json.load(open(__C.QUESTION_PATH['val'], 'r'))['questions'] + \
+            # json.load(open(__C.QUESTION_PATH['test'], 'r'))['questions'] + \
+
 
         print('Loading question word list :')
 
@@ -50,6 +54,15 @@ class DataSet(Data.Dataset):
         # self.stat_ans_list = \
         #     json.load(open(__C.ANSWER_PATH['train'], 'r'))['annotations'] + \
         #     json.load(open(__C.ANSWER_PATH['val'], 'r'))['annotations']
+        # print('test ')
+        # print(len(self.stat_ques_list))
+        # print(self.stat_ques_list[0])
+        # ii = 0
+        # for obj in self.stat_ques_list:
+        #     if ii < 20:
+        #         print(obj)
+        #     ii += 1
+        # print("End test")
 
         # Loading question and answer list
         self.ques_list = []
@@ -80,7 +93,7 @@ class DataSet(Data.Dataset):
             time_start = time.time()
             self.iid_to_img_feat = img_feat_load(self.img_feat_path_list)
             time_end = time.time()
-            print('==== Finished in {}s'.format(int(time_end-time_start)))
+            print('==== Finished in {}s'.format(int(time_end - time_start)))
         else:
             self.iid_to_img_feat_path = img_feat_path_load(self.img_feat_path_list)
 
@@ -114,6 +127,10 @@ class DataSet(Data.Dataset):
         img_feat_iter = np.zeros(1)
         ques_ix_iter = np.zeros(1)
         ans_iter = np.zeros(1)
+        # for o in self.iid_to_img_feat_path:
+        #     print(o)
+
+        # print('----------------------------------')
 
         # Process ['train'] and ['val', 'test'] respectively
         if self.__C.RUN_MODE in ['train']:
@@ -124,10 +141,15 @@ class DataSet(Data.Dataset):
             # Process image feature from (.npz) file
             if self.__C.PRELOAD:
                 img_feat_x = self.iid_to_img_feat[str(ans['image_id'])]
+                img_feat_iter = proc_img_feat(img_feat_x, self.__C.IMG_FEAT_PAD_SIZE)
             else:
-                img_feat = np.load(self.iid_to_img_feat_path[str(ans['image_id'])])
-                img_feat_x = img_feat['x'].transpose((1, 0))
-            img_feat_iter = proc_img_feat(img_feat_x, self.__C.IMG_FEAT_PAD_SIZE)
+                # print(str(ans['image_id']))
+                # print('test 111')
+                # print(self.iid_to_img_feat_path[str(ans['image_id'])])
+                if str(ans['image_id']) in self.iid_to_img_feat_path:
+                    img_feat = np.load(self.iid_to_img_feat_path[str(ans['image_id'])])
+                    img_feat_x = img_feat['x'].transpose((1, 0))
+                    img_feat_iter = proc_img_feat(img_feat_x, self.__C.IMG_FEAT_PAD_SIZE)
 
             # Process question
             ques_ix_iter = proc_ques(ques, self.token_to_ix, self.__C.MAX_TOKEN)
@@ -145,10 +167,12 @@ class DataSet(Data.Dataset):
             # Process image feature from (.npz) file
             if self.__C.PRELOAD:
                 img_feat_x = self.iid_to_img_feat[str(ques['image_id'])]
+                img_feat_iter = proc_img_feat(img_feat_x, self.__C.IMG_FEAT_PAD_SIZE)
             else:
-                img_feat = np.load(self.iid_to_img_feat_path[str(ques['image_id'])])
-                img_feat_x = img_feat['x'].transpose((1, 0))
-            img_feat_iter = proc_img_feat(img_feat_x, self.__C.IMG_FEAT_PAD_SIZE)
+                if str(ques['image_id']) in self.iid_to_img_feat_path:
+                    img_feat = np.load(self.iid_to_img_feat_path[str(ques['image_id'])])
+                    img_feat_x = img_feat['x'].transpose((1, 0))
+                    img_feat_iter = proc_img_feat(img_feat_x, self.__C.IMG_FEAT_PAD_SIZE)
 
             # Process question
             ques_ix_iter = proc_ques(ques, self.token_to_ix, self.__C.MAX_TOKEN)

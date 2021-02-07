@@ -120,6 +120,7 @@ class Execution:
             )
 
         # Training script
+        print('Training script')
         for epoch in range(start_epoch, self.__C.MAX_EPOCH):
 
             # Save log information
@@ -168,7 +169,7 @@ class Execution:
                     sub_ans_iter = \
                         ans_iter[accu_step * self.__C.SUB_BATCH_SIZE:
                                  (accu_step + 1) * self.__C.SUB_BATCH_SIZE]
-
+                    # print(sub_ques_ix_iter)
                     pred = net(
                         sub_img_feat_iter,
                         sub_ques_ix_iter
@@ -260,23 +261,6 @@ class Execution:
                     valid=True
                 )
 
-            # if self.__C.VERBOSE:
-            #     logfile = open(
-            #         self.__C.LOG_PATH +
-            #         'log_run_' + self.__C.VERSION + '.txt',
-            #         'a+'
-            #     )
-            #     for name in range(len(named_params)):
-            #         logfile.write(
-            #             'Param %-3s Name %-80s Grad_Norm %-25s\n' % (
-            #                 str(name),
-            #                 named_params[name][0],
-            #                 str(grad_norm[name] / data_size * self.__C.BATCH_SIZE)
-            #             )
-            #         )
-            #     logfile.write('\n')
-            #     logfile.close()
-
             loss_sum = 0
             grad_norm = np.zeros(len(named_params))
 
@@ -325,7 +309,7 @@ class Execution:
             net = nn.DataParallel(net, device_ids=self.__C.DEVICES)
 
         net.load_state_dict(state_dict)
-
+        print('Data.DataLoader')
         dataloader = Data.DataLoader(
             dataset,
             batch_size=self.__C.EVAL_BATCH_SIZE,
@@ -333,6 +317,8 @@ class Execution:
             num_workers=self.__C.NUM_WORKERS,
             pin_memory=True
         )
+
+        print('------ dataloader ----------')
 
         for step, (
                 img_feat_iter,
@@ -377,7 +363,7 @@ class Execution:
 
                 pred_list.append(pred_np)
 
-        print('')
+        print('--- ans_ix_list ----')
         ans_ix_list = np.array(ans_ix_list).reshape(-1)
 
         result = [{
