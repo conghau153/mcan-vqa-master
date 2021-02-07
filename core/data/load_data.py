@@ -29,40 +29,13 @@ class DataSet(Data.Dataset):
             if split in ['train', 'val', 'test']:
                 self.img_feat_path_list += glob.glob(__C.IMG_FEAT_PATH[split] + '*.npz')
 
-        # print(len(self.img_feat_path_list))
-        # print(self.img_feat_path_list)
-
-        # if __C.EVAL_EVERY_EPOCH and __C.RUN_MODE in ['train']:
-        #     self.img_feat_path_list += glob.glob(__C.IMG_FEAT_PATH['val'] + '*.npz')
-
-        # else:
-        #     self.img_feat_path_list = \
-        #         glob.glob(__C.IMG_FEAT_PATH['train'] + '*.npz') + \
-        #         glob.glob(__C.IMG_FEAT_PATH['val'] + '*.npz') + \
-        #         glob.glob(__C.IMG_FEAT_PATH['test'] + '*.npz')
-
         # Loading question word list
-        self.stat_ques_list = json.load(open(__C.QUESTION_PATH['vg'], 'r'))['questions']
-            # json.load(open(__C.QUESTION_PATH['train'], 'r'))['questions'] + \
-            # json.load(open(__C.QUESTION_PATH['val'], 'r'))['questions'] + \
-            # json.load(open(__C.QUESTION_PATH['test'], 'r'))['questions'] + \
-
+        self.stat_ques_list = json.load(open(__C.QUESTION_PATH['train'], 'r'))['questions'] + \
+            json.load(open(__C.QUESTION_PATH['val'], 'r'))['questions'] + \
+            json.load(open(__C.QUESTION_PATH['test'], 'r'))['questions'] + \
+            json.load(open(__C.QUESTION_PATH['vg'], 'r'))['questions']
 
         print('Loading question word list :')
-
-        # Loading answer word list
-        # self.stat_ans_list = \
-        #     json.load(open(__C.ANSWER_PATH['train'], 'r'))['annotations'] + \
-        #     json.load(open(__C.ANSWER_PATH['val'], 'r'))['annotations']
-        # print('test ')
-        # print(len(self.stat_ques_list))
-        # print(self.stat_ques_list[0])
-        # ii = 0
-        # for obj in self.stat_ques_list:
-        #     if ii < 20:
-        #         print(obj)
-        #     ii += 1
-        # print("End test")
 
         # Loading question and answer list
         self.ques_list = []
@@ -106,15 +79,6 @@ class DataSet(Data.Dataset):
         print('== Question token vocab size:', self.token_size)
 
         # Answers statistic
-        # Make answer dict during training does not guarantee
-        # the same order of {ans_to_ix}, so we published our
-        # answer dict to ensure that our pre-trained model
-        # can be adapted on each machine.
-
-        # Thanks to Licheng Yu (https://github.com/lichengunc)
-        # for finding this bug and providing the solutions.
-
-        # self.ans_to_ix, self.ix_to_ans = ans_stat(self.stat_ans_list, __C.ANS_FREQ)
         self.ans_to_ix, self.ix_to_ans = ans_stat('core/data/answer_dict.json')
         self.ans_size = self.ans_to_ix.__len__()
         print('== Answer vocab size (occur more than {} times):'.format(8), self.ans_size)
@@ -127,11 +91,6 @@ class DataSet(Data.Dataset):
         img_feat_iter = np.zeros(1)
         ques_ix_iter = np.zeros(1)
         ans_iter = np.zeros(1)
-        # for o in self.iid_to_img_feat_path:
-        #     print(o)
-
-        # print('----------------------------------')
-
         # Process ['train'] and ['val', 'test'] respectively
         if self.__C.RUN_MODE in ['train']:
             # Load the run data from list
@@ -143,9 +102,6 @@ class DataSet(Data.Dataset):
                 img_feat_x = self.iid_to_img_feat[str(ans['image_id'])]
                 img_feat_iter = proc_img_feat(img_feat_x, self.__C.IMG_FEAT_PAD_SIZE)
             else:
-                # print(str(ans['image_id']))
-                # print('test 111')
-                # print(self.iid_to_img_feat_path[str(ans['image_id'])])
                 if str(ans['image_id']) in self.iid_to_img_feat_path:
                     img_feat = np.load(self.iid_to_img_feat_path[str(ans['image_id'])])
                     img_feat_x = img_feat['x'].transpose((1, 0))

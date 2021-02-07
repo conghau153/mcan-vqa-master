@@ -80,31 +80,6 @@ def tokenize(stat_ques_list, use_glove):
 
     return token_to_ix, pretrained_emb
 
-
-# def ans_stat(stat_ans_list, ans_freq):
-#     ans_to_ix = {}
-#     ix_to_ans = {}
-#     ans_freq_dict = {}
-#
-#     for ans in stat_ans_list:
-#         ans_proc = prep_ans(ans['multiple_choice_answer'])
-#         if ans_proc not in ans_freq_dict:
-#             ans_freq_dict[ans_proc] = 1
-#         else:
-#             ans_freq_dict[ans_proc] += 1
-#
-#     ans_freq_filter = ans_freq_dict.copy()
-#     for ans in ans_freq_dict:
-#         if ans_freq_dict[ans] <= ans_freq:
-#             ans_freq_filter.pop(ans)
-#
-#     for ans in ans_freq_filter:
-#         ix_to_ans[ans_to_ix.__len__()] = ans
-#         ans_to_ix[ans] = ans_to_ix.__len__()
-#
-#     return ans_to_ix, ix_to_ans
-
-
 def ans_stat(json_file):
     ans_to_ix, ix_to_ans = json.load(open(json_file, 'r'))
 

@@ -363,7 +363,6 @@ class Execution:
 
                 pred_list.append(pred_np)
 
-        print('--- ans_ix_list ----')
         ans_ix_list = np.array(ans_ix_list).reshape(-1)
 
         result = [{
