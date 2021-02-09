@@ -371,7 +371,6 @@ class Execution:
         } for qix in range(qid_list.__len__())]
 
         # Write the results to result file
-        print('---- Write the results to result file ----')
         if valid:
             if val_ckpt_flag:
                 result_eval_file = \
@@ -436,7 +435,6 @@ class Execution:
 
             vqa = VQA(ans_file_path, ques_file_path)
             vqaRes = vqa.loadRes(result_eval_file, ques_file_path)
-
             # create vqaEval object by taking vqa and vqaRes
             vqaEval = VQAEval(vqa, vqaRes,
                               n=2)  # n is precision of accuracy (number of places after decimal), default is 2
