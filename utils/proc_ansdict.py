@@ -10,7 +10,7 @@ sys.path.append('../')
 from core.data.ans_punct import prep_ans
 import json
 
-DATASET_PATH = '../datasets/vqa-vi/'
+DATASET_PATH = '../datasets/vqa-en/'
 
 ANSWER_PATH = {
     'train': DATASET_PATH + 'v2_mscoco_train2014_annotations.json',
