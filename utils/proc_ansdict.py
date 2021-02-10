@@ -13,9 +13,8 @@ import json
 DATASET_PATH = '../datasets/vqa-en/'
 
 ANSWER_PATH = {
-    'train': DATASET_PATH + 'v2_mscoco_train2014_annotations.json',
-    'val': DATASET_PATH + 'v2_mscoco_val2014_annotations.json',
-    'vg': DATASET_PATH + 'VG_annotations.json',
+    'train': DATASET_PATH + 'annotations_train.json',
+    'val': DATASET_PATH + 'annotations_val.json',
 }
 
 # Loading answer word list

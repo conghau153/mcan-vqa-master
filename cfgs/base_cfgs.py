@@ -60,7 +60,7 @@ class Cfgs(PATH):
         }
 
         # A external method to set train split
-        self.TRAIN_SPLIT = 'train+val+vg'
+        self.TRAIN_SPLIT = 'train+val'
 
         # Set True to use pretrained word embedding
         # (GloVe: spaCy https://spacy.io/)

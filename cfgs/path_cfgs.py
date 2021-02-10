@@ -14,27 +14,20 @@ class PATH:
     def init_path(self):
 
         self.IMG_FEAT_PATH = {
-            'train': self.FEATURE_PATH + 'train2014/',
-            'val': self.FEATURE_PATH + 'val2014/',
-            'test': self.FEATURE_PATH + 'test2015/',
+            'train': self.FEATURE_PATH + 'train/',
+            'val': self.FEATURE_PATH + 'val/',
+            'test': self.FEATURE_PATH + 'test/',
         }
 
         self.QUESTION_PATH = {
-            # 'train': self.DATASET_PATH + 'v2_OpenEnded_mscoco_train2014_questions.json',
-            # 'val': self.DATASET_PATH + 'v2_OpenEnded_mscoco_val2014_questions.json',
-            # 'test': self.DATASET_PATH + 'v2_OpenEnded_mscoco_test2015_questions.json',
-            'vg': self.DATASET_PATH + 'VG_questions.json',
-            'train': self.DATASET_PATH + 'v2_OpenEnded_mscoco_train2014_questions.json',
-            'val': self.DATASET_PATH + 'v2_OpenEnded_mscoco_val2014_questions.json',
-            'test': self.DATASET_PATH + 'VG_questions.json',
+            'train': self.DATASET_PATH + 'questions_train.json',
+            'val': self.DATASET_PATH + 'questions_val.json',
+            'test': self.DATASET_PATH + 'questions_test.json',
         }
 
         self.ANSWER_PATH = {
-            # 'train': self.DATASET_PATH + 'v2_mscoco_train2014_annotations.json',
-            # 'val': self.DATASET_PATH + 'v2_mscoco_val2014_annotations.json',
-            'vg': self.DATASET_PATH + 'VG_annotations.json',
-            'train': self.DATASET_PATH + 'v2_mscoco_train2014_annotations.json',
-            'val': self.DATASET_PATH + 'v2_mscoco_val2014_annotations.json',
+            'train': self.DATASET_PATH + 'annotations_train.json',
+            'val': self.DATASET_PATH + 'annotations_val.json',
         }
 
         self.RESULT_PATH = './results/result_test/'
