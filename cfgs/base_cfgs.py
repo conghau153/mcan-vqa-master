@@ -160,6 +160,7 @@ class Cfgs(PATH):
             if not arg.startswith('_') and not isinstance(getattr(args, arg), MethodType):
                 if getattr(args, arg) is not None:
                     args_dict[arg] = getattr(args, arg)
+        print('------------------------------args_dict--------------------------------')
 
         return args_dict
 

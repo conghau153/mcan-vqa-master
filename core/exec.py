@@ -40,8 +40,16 @@ class Execution:
         ans_size = dataset.ans_size
         pretrained_emb = dataset.pretrained_emb
 
+        # print('data_size:')
+        # print(data_size)
+        # print('token_size: ')
+        # print(token_size)
+        # print('ans_size: ')
+        # print(ans_size)
+        # print('pretrained_emb')
+        # print(pretrained_emb)
+
         # Define the MCAN model
-        print('---- Define the MCAN model for training ---------')
         net = Net(
             self.__C,
             pretrained_emb,
@@ -176,27 +184,17 @@ class Execution:
                     )
 
                     loss = loss_fn(pred, sub_ans_iter)
-                    # only mean-reduction needs be divided by grad_accu_steps
-                    # removing this line wouldn't change our results because the speciality of Adam optimizer,
-                    # but would be necessary if you use SGD optimizer.
-                    # loss /= self.__C.GRAD_ACCU_STEPS
                     loss.backward()
                     loss_sum += loss.cpu().data.numpy() * self.__C.GRAD_ACCU_STEPS
 
                     if self.__C.VERBOSE:
-                        if dataset_eval is not None:
-                            mode_str = self.__C.SPLIT['train'] + '->' + self.__C.SPLIT['val']
-                        else:
-                            mode_str = self.__C.SPLIT['train'] + '->' + self.__C.SPLIT['test']
 
-                        print("\r[version %s][epoch %2d][step %4d/%4d][%s] loss: %.4f, lr: %.2e" % (
+                        print("\r[version %s][epoch %2d][step %4d/%4d] loss: %.4f" % (
                             self.__C.VERSION,
                             epoch + 1,
                             step,
                             int(data_size / self.__C.BATCH_SIZE),
-                            mode_str,
                             loss.cpu().data.numpy() / self.__C.SUB_BATCH_SIZE,
-                            optim._rate
                         ), end='          ')
 
                 # Gradient norm clipping
@@ -211,10 +209,6 @@ class Execution:
                     norm_v = torch.norm(named_params[name][1].grad).cpu().data.numpy() \
                         if named_params[name][1].grad is not None else 0
                     grad_norm[name] += norm_v * self.__C.GRAD_ACCU_STEPS
-                    # print('Param %-3s Name %-80s Grad_Norm %-20s'%
-                    #       (str(grad_wt),
-                    #        params[grad_wt][0],
-                    #        str(norm_v)))
 
                 optim.step()
 
@@ -290,7 +284,6 @@ class Execution:
         ans_ix_list = []
         pred_list = []
 
-        print('get data from dataset')
         data_size = dataset.data_size
         token_size = dataset.token_size
         ans_size = dataset.ans_size
@@ -309,7 +302,6 @@ class Execution:
             net = nn.DataParallel(net, device_ids=self.__C.DEVICES)
 
         net.load_state_dict(state_dict)
-        print('Data.DataLoader')
         dataloader = Data.DataLoader(
             dataset,
             batch_size=self.__C.EVAL_BATCH_SIZE,
@@ -317,8 +309,6 @@ class Execution:
             num_workers=self.__C.NUM_WORKERS,
             pin_memory=True
         )
-
-        print('------ dataloader ----------')
 
         for step, (
                 img_feat_iter,
@@ -401,7 +391,6 @@ class Execution:
         json.dump(result, open(result_eval_file, 'w'))
 
         # Save the whole prediction vector
-        print('---- Save the whole prediction vector ----')
         if self.__C.TEST_SAVE_PRED:
 
             if self.__C.CKPT_PATH is not None:
@@ -427,7 +416,7 @@ class Execution:
             pickle.dump(result_pred, open(ensemble_file, 'wb+'), protocol=-1)
 
         # Run validation script
-        print('---- Run validation script -------')
+
         if valid:
             # create vqa object and vqaRes object
             ques_file_path = self.__C.QUESTION_PATH['val']
@@ -440,10 +429,6 @@ class Execution:
                               n=2)  # n is precision of accuracy (number of places after decimal), default is 2
 
             # evaluate results
-            """
-            If you have a list of question ids on which you would like to evaluate your results, pass it as a list to below function
-            By default it uses all the question ids in annotation file
-            """
             vqaEval.evaluate()
 
             # print accuracies

@@ -10,7 +10,7 @@ sys.path.append('../')
 from core.data.ans_punct import prep_ans
 import json
 
-DATASET_PATH = '../datasets/vqa-en/'
+DATASET_PATH = '../datasets/vqa-vi/'
 
 ANSWER_PATH = {
     'train': DATASET_PATH + 'annotations_train.json',
@@ -24,6 +24,7 @@ stat_ans_list = \
 
 
 def ans_stat(stat_ans_list):
+    print('---------------------------------ans_stat ------------------------------------')
     ans_to_ix = {}
     ix_to_ans = {}
     ans_freq_dict = {}
@@ -46,6 +47,6 @@ def ans_stat(stat_ans_list):
 
     return ans_to_ix, ix_to_ans
 
-
+print('---------------------------------proc_ansdict------------------------------------')
 ans_to_ix, ix_to_ans = ans_stat(stat_ans_list)
-json.dump([ans_to_ix, ix_to_ans], open('../core/data/answer_dict.json', 'w'))
+# json.dump([ans_to_ix, ix_to_ans], open('../core/data/answer_dict.json', 'w'))

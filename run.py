@@ -132,8 +132,8 @@ if __name__ == '__main__':
     __C.add_args(args_dict)
     __C.proc()
 
-    print('Hyper Parameters:')
-    print(__C)
+    # print('Hyper Parameters:')
+    # print(__C)
 
     __C.check_path()
 

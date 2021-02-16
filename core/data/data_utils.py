@@ -81,7 +81,11 @@ def tokenize(stat_ques_list, use_glove):
     return token_to_ix, pretrained_emb
 
 def ans_stat(json_file):
-    ans_to_ix, ix_to_ans = json.load(open(json_file, 'r'))
+    data = json.load(open(json_file, 'r'))
+    ans_to_ix = data[0]
+    ix_to_ans = data[1]
+
+    # ans_to_ix, ix_to_ans = json.load(open(json_file, 'r'))
 
     return ans_to_ix, ix_to_ans
 

@@ -4,7 +4,7 @@ class PATH:
     def __init__(self):
 
         # vqav2 dataset root path
-        self.DATASET_PATH = './datasets/vqa-en/'
+        self.DATASET_PATH = './datasets/vqa-vi/'
 
         # bottom up features root path
         self.FEATURE_PATH = './datasets/coco_extract/'
@@ -52,7 +52,7 @@ class PATH:
             os.mkdir('./ckpts')
 
     def check_path(self):
-        print('Checking dataset ...')
+        # print('Checking dataset ...')
 
         for mode in self.IMG_FEAT_PATH:
             if not os.path.exists(self.IMG_FEAT_PATH[mode]):
@@ -68,7 +68,7 @@ class PATH:
             if not os.path.exists(self.ANSWER_PATH[mode]):
                 print(self.ANSWER_PATH[mode] + 'NOT EXIST')
                 exit(-1)
-
-        print('Finished')
-        print('')
+        #
+        # print('Finished')
+        # print('')
 

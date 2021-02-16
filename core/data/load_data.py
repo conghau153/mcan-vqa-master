@@ -21,8 +21,6 @@ class DataSet(Data.Dataset):
         # --------------------------
 
         # Loading all image paths
-        # if self.__C.PRELOAD:
-        print('Loading all image paths')
         self.img_feat_path_list = []
         split_list = __C.SPLIT[__C.RUN_MODE].split('+')
         for split in split_list:
@@ -34,8 +32,6 @@ class DataSet(Data.Dataset):
             json.load(open(__C.QUESTION_PATH['val'], 'r'))['questions'] + \
             json.load(open(__C.QUESTION_PATH['test'], 'r'))['questions']
 
-        print('Loading question word list :')
-
         # Loading question and answer list
         self.ques_list = []
         self.ans_list = []
@@ -45,7 +41,6 @@ class DataSet(Data.Dataset):
             self.ques_list += json.load(open(__C.QUESTION_PATH[split], 'r'))['questions']
             if __C.RUN_MODE in ['train']:
                 self.ans_list += json.load(open(__C.ANSWER_PATH[split], 'r'))['annotations']
-        print('Loading question and answer list')
 
         # Define run data size
         if __C.RUN_MODE in ['train']:
@@ -78,7 +73,7 @@ class DataSet(Data.Dataset):
         print('== Question token vocab size:', self.token_size)
 
         # Answers statistic
-        self.ans_to_ix, self.ix_to_ans = ans_stat('core/data/answer_dict.json')
+        self.ans_to_ix, self.ix_to_ans = ans_stat('core/data/answer_dict_vi.json')
         self.ans_size = self.ans_to_ix.__len__()
         print('== Answer vocab size (occur more than {} times):'.format(8), self.ans_size)
         print('Finished!')
