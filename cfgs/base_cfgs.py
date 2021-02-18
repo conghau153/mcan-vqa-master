@@ -60,7 +60,7 @@ class Cfgs(PATH):
         }
 
         # A external method to set train split
-        self.TRAIN_SPLIT = 'train+val'
+        self.TRAIN_SPLIT = 'train'
 
         # Set True to use pretrained word embedding
         # (GloVe: spaCy https://spacy.io/)
@@ -160,7 +160,7 @@ class Cfgs(PATH):
             if not arg.startswith('_') and not isinstance(getattr(args, arg), MethodType):
                 if getattr(args, arg) is not None:
                     args_dict[arg] = getattr(args, arg)
-        print('------------------------------args_dict--------------------------------')
+
 
         return args_dict
 
