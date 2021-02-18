@@ -94,8 +94,8 @@ class VQAEval:
 				for ansDic in gts[quesId]['answers']:
 					ansDic['answer'] = self.processPunctuation(ansDic['answer'])
 			for gtAnsDatum in gts[quesId]['answers']:
-				# otherGTAns = [item for item in gts[quesId]['answers'] if item != gtAnsDatum]
-				matchingAns = [item for item in gts[quesId]['answers'] if item['answer'] == resAns]
+				otherGTAns = [item for item in gts[quesId]['answers'] if item != gtAnsDatum]
+				matchingAns = [item for item in otherGTAns if item['answer'] == resAns]
 
 				acc = min(1, float(len(matchingAns)) / 3)
 				gtAcc.append(acc)
@@ -103,16 +103,6 @@ class VQAEval:
 			quesType = gts[quesId]['question_type']
 			ansType  = gts[quesId]['answer_type']
 			avgGTAcc = float(sum(gtAcc))/len(gtAcc)
-			matchingAns2 = [item for item in gts[quesId]['answers']]
-			if avgGTAcc == 0.0:
-				print(resAns)
-				print(matchingAns2)
-				print('\n')
-
-			# print(gts[quesId]['answers'])
-			# print(resAns)
-			# print(avgGTAcc)
-			# print('\n')
 
 			accQA.append(avgGTAcc)
 
@@ -125,11 +115,6 @@ class VQAEval:
 			self.setEvalQA(quesId, avgGTAcc)
 			self.setEvalQuesType(quesId, quesType, avgGTAcc)
 			self.setEvalAnsType(quesId, ansType, avgGTAcc)
-
-			# print(accQA)
-			# print(accQuesType)
-			# print(accAnsType)
-			# print('\n')
 
 			if step%100 == 0:
 				self.updateProgress(step/float(len(quesIds)))
@@ -164,8 +149,8 @@ class VQAEval:
 		return outText
 
 	def setAccuracy(self, accQA, accQuesType, accAnsType):
-		print(accQA)
-		print('\n')
+		# print(accQA)
+		# print('\n')
 		self.accuracy['overall']         = round(100*float(sum(accQA))/len(accQA), self.n)
 		self.accuracy['perQuestionType'] = {quesType: round(100*float(sum(accQuesType[quesType]))/len(accQuesType[quesType]), self.n) for quesType in accQuesType}
 		self.accuracy['perAnswerType']   = {ansType:  round(100*float(sum(accAnsType[ansType]))/len(accAnsType[ansType]), self.n) for ansType in accAnsType}
