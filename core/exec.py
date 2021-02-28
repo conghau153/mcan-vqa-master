@@ -32,6 +32,7 @@ class Execution:
             print('Loading validation set for per-epoch evaluation ........')
             self.dataset_eval = DataSet(__C_eval)
 
+
     def train(self, dataset, dataset_eval=None):
 
         # Obtain needed information
@@ -41,7 +42,6 @@ class Execution:
         pretrained_emb = dataset.pretrained_emb
 
         # Define the MCAN model
-        print('---- Define the MCAN model for training ---------')
         net = Net(
             self.__C,
             pretrained_emb,
@@ -79,7 +79,7 @@ class Execution:
             print('Finish!')
             net.load_state_dict(ckpt['state_dict'])
 
-            # Load the optimizer parameters
+            # Load the optimizer paramters
             optim = get_optim(self.__C, net, data_size, ckpt['lr_base'])
             optim._step = int(data_size / self.__C.BATCH_SIZE * self.__C.CKPT_EPOCH)
             optim.optimizer.load_state_dict(ckpt['optimizer'])
@@ -169,6 +169,7 @@ class Execution:
                         ans_iter[accu_step * self.__C.SUB_BATCH_SIZE:
                                  (accu_step + 1) * self.__C.SUB_BATCH_SIZE]
 
+
                     pred = net(
                         sub_img_feat_iter,
                         sub_ques_ix_iter
@@ -218,7 +219,7 @@ class Execution:
                 optim.step()
 
             time_end = time.time()
-            print('Finished in {}s'.format(int(time_end - time_start)))
+            print('Finished in {}s'.format(int(time_end-time_start)))
 
             # print('')
             epoch_finish = epoch + 1
@@ -280,6 +281,7 @@ class Execution:
             loss_sum = 0
             grad_norm = np.zeros(len(named_params))
 
+
     # Evaluation
     def eval(self, dataset, state_dict=None, valid=False):
 
@@ -306,7 +308,6 @@ class Execution:
         ans_ix_list = []
         pred_list = []
 
-        print('get data from dataset')
         data_size = dataset.data_size
         token_size = dataset.token_size
         ans_size = dataset.ans_size
@@ -383,10 +384,9 @@ class Execution:
         result = [{
             'answer': dataset.ix_to_ans[str(ans_ix_list[qix])],  # ix_to_ans(load with json) keys are type of string
             'question_id': int(qid_list[qix])
-        } for qix in range(qid_list.__len__())]
+        }for qix in range(qid_list.__len__())]
 
         # Write the results to result file
-        print('---- Write the results to result file ----')
         if valid:
             if val_ckpt_flag:
                 result_eval_file = \
@@ -417,7 +417,6 @@ class Execution:
         json.dump(result, open(result_eval_file, 'w'))
 
         # Save the whole prediction vector
-        print('---- Save the whole prediction vector ----')
         if self.__C.TEST_SAVE_PRED:
 
             if self.__C.CKPT_PATH is not None:
@@ -438,12 +437,12 @@ class Execution:
             result_pred = [{
                 'pred': pred_list[qix],
                 'question_id': int(qid_list[qix])
-            } for qix in range(qid_list.__len__())]
+            }for qix in range(qid_list.__len__())]
 
             pickle.dump(result_pred, open(ensemble_file, 'wb+'), protocol=-1)
 
+
         # Run validation script
-        print('---- Run validation script -------')
         if valid:
             # create vqa object and vqaRes object
             ques_file_path = self.__C.QUESTION_PATH['val']
@@ -453,8 +452,7 @@ class Execution:
             vqaRes = vqa.loadRes(result_eval_file, ques_file_path)
 
             # create vqaEval object by taking vqa and vqaRes
-            vqaEval = VQAEval(vqa, vqaRes,
-                              n=2)  # n is precision of accuracy (number of places after decimal), default is 2
+            vqaEval = VQAEval(vqa, vqaRes, n=2)  # n is precision of accuracy (number of places after decimal), default is 2
 
             # evaluate results
             """
@@ -507,6 +505,7 @@ class Execution:
             logfile.write("\n\n")
             logfile.close()
 
+
     def run(self, run_mode):
         if run_mode == 'train':
             self.empty_log(self.__C.VERSION)
@@ -521,9 +520,14 @@ class Execution:
         else:
             exit(-1)
 
+
     def empty_log(self, version):
         print('Initializing log file ........')
-        if os.path.exists(self.__C.LOG_PATH + 'log_run_' + version + '.txt'):
+        if (os.path.exists(self.__C.LOG_PATH + 'log_run_' + version + '.txt')):
             os.remove(self.__C.LOG_PATH + 'log_run_' + version + '.txt')
         print('Finished!')
         print('')
+
+
+
+

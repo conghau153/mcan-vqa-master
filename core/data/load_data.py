@@ -16,6 +16,7 @@ class DataSet(Data.Dataset):
     def __init__(self, __C):
         self.__C = __C
 
+
         # --------------------------
         # ---- Raw data loading ----
         # --------------------------
@@ -44,8 +45,6 @@ class DataSet(Data.Dataset):
             json.load(open(__C.QUESTION_PATH['test'], 'r'))['questions'] + \
             json.load(open(__C.QUESTION_PATH['vg'], 'r'))['questions']
 
-        print('Loading question word list :')
-
         # Loading answer word list
         # self.stat_ans_list = \
         #     json.load(open(__C.ANSWER_PATH['train'], 'r'))['annotations'] + \
@@ -60,7 +59,6 @@ class DataSet(Data.Dataset):
             self.ques_list += json.load(open(__C.QUESTION_PATH[split], 'r'))['questions']
             if __C.RUN_MODE in ['train']:
                 self.ans_list += json.load(open(__C.ANSWER_PATH[split], 'r'))['annotations']
-        print('Loading question and answer list')
 
         # Define run data size
         if __C.RUN_MODE in ['train']:
@@ -69,6 +67,7 @@ class DataSet(Data.Dataset):
             self.data_size = self.ques_list.__len__()
 
         print('== Dataset size:', self.data_size)
+
 
         # ------------------------
         # ---- Data statistic ----
@@ -104,9 +103,10 @@ class DataSet(Data.Dataset):
         # self.ans_to_ix, self.ix_to_ans = ans_stat(self.stat_ans_list, __C.ANS_FREQ)
         self.ans_to_ix, self.ix_to_ans = ans_stat('core/data/answer_dict.json')
         self.ans_size = self.ans_to_ix.__len__()
-        print('== Answer vocab size (occur more than {} times):'.format(8), self.ans_size)
+        print('== Answer vocab size (occurr more than {} times):'.format(8), self.ans_size)
         print('Finished!')
         print('')
+
 
     def __getitem__(self, idx):
 
@@ -153,7 +153,13 @@ class DataSet(Data.Dataset):
             # Process question
             ques_ix_iter = proc_ques(ques, self.token_to_ix, self.__C.MAX_TOKEN)
 
-        return torch.from_numpy(img_feat_iter), torch.from_numpy(ques_ix_iter), torch.from_numpy(ans_iter)
+
+        return torch.from_numpy(img_feat_iter), \
+               torch.from_numpy(ques_ix_iter), \
+               torch.from_numpy(ans_iter)
+
 
     def __len__(self):
         return self.data_size
+
+
