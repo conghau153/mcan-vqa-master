@@ -25,6 +25,7 @@ class DataSet(Data.Dataset):
         # if self.__C.PRELOAD:
         self.img_feat_path_list = []
         split_list = __C.SPLIT[__C.RUN_MODE].split('+')
+        print(split_list)
         for split in split_list:
             if split in ['train', 'val', 'test']:
                 self.img_feat_path_list += glob.glob(__C.IMG_FEAT_PATH[split] + '*.npz')
