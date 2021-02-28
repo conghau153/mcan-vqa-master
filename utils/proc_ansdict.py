@@ -46,7 +46,5 @@ def ans_stat(stat_ans_list):
         ans_to_ix[ans] = ans_to_ix.__len__()
 
     return ans_to_ix, ix_to_ans
-
-print('---------------------------------proc_ansdict------------------------------------')
 ans_to_ix, ix_to_ans = ans_stat(stat_ans_list)
 # json.dump([ans_to_ix, ix_to_ans], open('../core/data/answer_dict.json', 'w'))
