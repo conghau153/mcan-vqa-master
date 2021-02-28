@@ -230,13 +230,14 @@ class Execution:
                 'optimizer': optim.optimizer.state_dict(),
                 'lr_base': optim.lr_base
             }
-            torch.save(
-                state,
-                self.__C.CKPTS_PATH +
-                'ckpt_' + self.__C.VERSION +
-                '/epoch' + str(epoch_finish) +
-                '.pkl'
-            )
+            if epoch_finish == self.__C.MAX_EPOCH:
+                torch.save(
+                    state,
+                    self.__C.CKPTS_PATH +
+                    'ckpt_' + self.__C.VERSION +
+                    '/epoch' + str(epoch_finish) +
+                    '.pkl'
+                )
 
             # Logging
             logfile = open(

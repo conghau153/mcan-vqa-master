@@ -2,29 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f91139be-7060-4935-97f5-840787d9514d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/mcan-vqa-master.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mcan-vqa-master.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cfgs/base_cfgs.py" beforeDir="false" afterPath="$PROJECT_DIR$/cfgs/base_cfgs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cfgs/large_model.yml" beforeDir="false" afterPath="$PROJECT_DIR$/cfgs/large_model.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cfgs/path_cfgs.py" beforeDir="false" afterPath="$PROJECT_DIR$/cfgs/path_cfgs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cfgs/small_model.yml" beforeDir="false" afterPath="$PROJECT_DIR$/cfgs/small_model.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/data/ans_punct.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/data/ans_punct.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/data/data_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/data/data_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/data/load_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/data/load_data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/exec.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/exec.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/model/mca.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/model/mca.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/model/net.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/model/net.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/model/net_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/model/net_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/model/optim.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/model/optim.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/run.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/setup.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/proc_ansdict.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/proc_ansdict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/vqa.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/vqa.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/vqaEval.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/vqaEval.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,11 +12,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/exec.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1926">
-              <caret line="27" column="32" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
+            <state relative-caret-position="141">
+              <caret line="231" column="13" lean-forward="true" selection-start-line="231" selection-start-column="13" selection-end-line="231" selection-end-column="13" />
               <folding>
                 <element signature="n#!!doc" />
               </folding>
@@ -48,7 +27,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/vqaEval.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="258">
               <caret line="184" selection-start-line="184" selection-end-line="184" />
             </state>
           </provider>
@@ -69,8 +48,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cfgs/base_cfgs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+            <state relative-caret-position="115">
+              <caret line="72" column="24" selection-start-line="72" selection-start-column="13" selection-end-line="72" selection-end-column="24" />
               <folding>
                 <element signature="e#281#312#0" expanded="true" />
               </folding>
@@ -78,10 +57,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cfgs/path_cfgs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="678">
+            <state relative-caret-position="156">
               <caret line="36" column="66" lean-forward="true" selection-start-line="36" selection-start-column="66" selection-end-line="36" selection-end-column="66" />
             </state>
           </provider>
@@ -108,8 +87,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/data/load_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+            <state relative-caret-position="98">
+              <caret line="25" column="36" lean-forward="true" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
               <folding>
                 <element signature="n#!!doc" />
                 <element signature="e#281#378#0" expanded="true" />
@@ -124,6 +103,9 @@
     <findStrings>
       <find>2014</find>
       <find>2015</find>
+      <find>train+</find>
+      <find>TRAIN_SPLIT</find>
+      <find>pkl</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -135,6 +117,9 @@
         <option value="$PROJECT_DIR$/setup.sh" />
         <option value="$PROJECT_DIR$/cfgs/path_cfgs.py" />
         <option value="$PROJECT_DIR$/utils/proc_ansdict.py" />
+        <option value="$PROJECT_DIR$/cfgs/base_cfgs.py" />
+        <option value="$PROJECT_DIR$/core/data/load_data.py" />
+        <option value="$PROJECT_DIR$/core/exec.py" />
       </list>
     </option>
   </component>
@@ -232,8 +217,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15031983" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15031983" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -248,8 +234,8 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.41333333" />
       <window_info anchor="bottom" id="SBT Execute" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="8" visible="true" weight="0.37777779" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49946696" weight="0.39444444" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.37777779" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49946696" visible="true" weight="0.49666667" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053304" side_tool="true" weight="0.39444444" />
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -316,20 +302,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/cfgs/path_cfgs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="36" column="66" lean-forward="true" selection-start-line="36" selection-start-column="66" selection-end-line="36" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/cfgs/base_cfgs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+        <state relative-caret-position="115">
+          <caret line="72" column="24" selection-start-line="72" selection-start-column="13" selection-end-line="72" selection-end-column="24" />
           <folding>
             <element signature="e#281#312#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cfgs/path_cfgs.py">
+    <entry file="file://$PROJECT_DIR$/utils/vqaEval.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="678">
-          <caret line="36" column="66" lean-forward="true" selection-start-line="36" selection-start-column="66" selection-end-line="36" selection-end-column="66" />
+        <state relative-caret-position="258">
+          <caret line="184" selection-start-line="184" selection-end-line="184" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/data/load_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="25" column="36" lean-forward="true" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
+          <folding>
+            <element signature="n#!!doc" />
+            <element signature="e#281#378#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/exec.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="231" column="13" lean-forward="true" selection-start-line="231" selection-start-column="13" selection-end-line="231" selection-end-column="13" />
+          <folding>
+            <element signature="n#!!doc" />
+          </folding>
         </state>
       </provider>
     </entry>
